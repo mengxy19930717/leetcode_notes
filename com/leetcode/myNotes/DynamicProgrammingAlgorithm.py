@@ -183,20 +183,16 @@ class Solution:
 
 
     def coinChange(self, coins: List[int], amount: int) -> int:
-        if amount == 0:
-            return 0
+        if amount <= 0:
+            return 1
         size = len(coins)
-        dp = [10000 for _ in range(amount+1)]
+        dp = [0 for _ in range(amount+1)]
         coins.sort()
-        dp[0] = 0
-
-        for i in range(0, size):
-            for j in range(amount, 0, -1):
-                for k in range(int(j/coins[i]), , -1):
-                    value = dp[j-k*coins[i]]+k
-                    dp[j] = min(dp[j], value)
-        if dp[amount] == 10000:
-            return -1
+        dp[0] = 1
+        for i in range(size):
+            for j in range(coins[i], amount+1):
+                if j - coins[i] >= 0:
+                    dp[j] += dp[j-coins[i]]
         return dp[amount]
 
 

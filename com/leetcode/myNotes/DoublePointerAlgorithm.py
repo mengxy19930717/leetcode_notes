@@ -1,5 +1,5 @@
 from typing import List
-from com.leetcode.mengxy.ListNodeAlgorithm import ListNode
+from com.leetcode.myNotes.ListNodeAlgorithm import ListNode
 import math
 
 
